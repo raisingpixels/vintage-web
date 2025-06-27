@@ -70,4 +70,5 @@ performance-reports/
 .netlify/
 
 # Local development
+exampleSite/.hugo_build.lock
 .hugo_build.lock
