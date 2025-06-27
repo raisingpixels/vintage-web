@@ -2,7 +2,7 @@
 
 A nostalgic Hugo theme inspired by late 90s/early 2000s web design with modern functionality. Experience the charm of classic operating system interfaces with contemporary web standards.
 
-![Theme Preview](images/screenshot.png)
+![Theme Preview](https://raw.githubusercontent.com/vibecodemama/vintage-web/blob/master/images/screenshot.jpeg)
 
 ## Features
 

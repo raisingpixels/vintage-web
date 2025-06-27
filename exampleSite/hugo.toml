@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "Retro Web Central - Y2K Compliant Since 1999"
 theme = "vintage-web"
 
-# Pagination (updated for Hugo v0.128.0+)
+# Pagination
 [pagination]
   pagerSize = 10
   path = "page"
