@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Retro Web Central - Y2K Compliant Since 1999</title>
+    <link>http://localhost:38497/categories/</link>
+    <description>Recent content in Categories on Retro Web Central - Y2K Compliant Since 1999</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Dec 1999 09:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:38497/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Survival</title>
+      <link>http://localhost:38497/categories/survival/</link>
+      <pubDate>Wed, 15 Dec 1999 09:00:00 +0000</pubDate>
+      <guid>http://localhost:38497/categories/survival/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tech</title>
+      <link>http://localhost:38497/categories/tech/</link>
+      <pubDate>Wed, 15 Dec 1999 09:00:00 +0000</pubDate>
+      <guid>http://localhost:38497/categories/tech/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Y2k</title>
+      <link>http://localhost:38497/categories/y2k/</link>
+      <pubDate>Wed, 15 Dec 1999 09:00:00 +0000</pubDate>
+      <guid>http://localhost:38497/categories/y2k/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorials</title>
+      <link>http://localhost:38497/categories/tutorials/</link>
+      <pubDate>Mon, 15 Nov 1999 14:30:00 +0000</pubDate>
+      <guid>http://localhost:38497/categories/tutorials/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Web-Design</title>
+      <link>http://localhost:38497/categories/web-design/</link>
+      <pubDate>Mon, 15 Nov 1999 14:30:00 +0000</pubDate>
+      <guid>http://localhost:38497/categories/web-design/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Graphics</title>
+      <link>http://localhost:38497/categories/graphics/</link>
+      <pubDate>Thu, 28 Oct 1999 16:45:00 +0000</pubDate>
+      <guid>http://localhost:38497/categories/graphics/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

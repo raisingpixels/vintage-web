@@ -1,0 +1,232 @@
+{{ define "main" }}
+<article class="window">
+    <div class="window-header">
+        <span class="window-title">{{ .Title }}</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <header class="content-header">
+            <h1 class="post-title">{{ .Title }}</h1>
+            
+            {{ if .IsPage }}
+            <div class="post-meta">
+                <span class="post-meta-item">
+                    📅 Published: {{ .Date.Format "Monday, January 2, 2006" }}
+                </span>
+                {{ if ne .Date .Lastmod }}
+                <span class="post-meta-item">
+                    🔄 Updated: {{ .Lastmod.Format "January 2, 2006" }}
+                </span>
+                {{ end }}
+                <span class="post-meta-item">
+                    📖 {{ .ReadingTime }} min read
+                </span>
+                <span class="post-meta-item">
+                    📊 {{ .WordCount }} words
+                </span>
+                
+                {{ with .Params.author }}
+                <span class="post-meta-item">
+                    👤 By {{ . }}
+                </span>
+                {{ end }}
+                
+                {{ with .Params.categories }}
+                <span class="post-meta-item">
+                    📂 Categories: 
+                    {{ range $i, $cat := . }}
+                        {{ if $i }}, {{ end }}
+                        <a href="{{ "/categories/" | relLangURL }}{{ $cat | urlize }}">{{ $cat }}</a>
+                    {{ end }}
+                </span>
+                {{ end }}
+                
+                {{ with .Params.tags }}
+                <span class="post-meta-item">
+                    🏷️ Tags: 
+                    {{ range $i, $tag := . }}
+                        {{ if $i }}, {{ end }}
+                        <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">{{ $tag }}</a>
+                    {{ end }}
+                </span>
+                {{ end }}
+                
+                {{ with .Params.series }}
+                <span class="post-meta-item">
+                    📚 Part of series: 
+                    {{ range $i, $ser := . }}
+                        {{ if $i }}, {{ end }}
+                        <a href="{{ "/series/" | relLangURL }}{{ $ser | urlize }}">{{ $ser }}</a>
+                    {{ end }}
+                </span>
+                {{ end }}
+            </div>
+            {{ end }}
+            
+            {{ with .Description }}
+            <div class="post-description" style="font-style: italic; margin: 8px 0; padding: 4px 8px; background: var(--bg-secondary); border: 1px inset var(--border-dark);">
+                {{ . }}
+            </div>
+            {{ end }}
+            
+            {{ with .Params.featured_image }}
+            <div class="featured-image" style="text-align: center; margin: 12px 0;">
+                <img src="{{ . }}" alt="{{ $.Title }}" style="max-width: 100%; border: 2px outset var(--border-dark);">
+            </div>
+            {{ end }}
+        </header>
+        
+        <!-- Table of Contents -->
+        {{ if and .Params.toc (.TableOfContents) }}
+        <div class="toc" style="background: var(--bg-secondary); border: 1px inset var(--border-dark); padding: 8px; margin: 12px 0;">
+            <div style="font-weight: bold; margin-bottom: 6px; border-bottom: 1px solid var(--border-dark); padding-bottom: 2px;">
+                📋 Table of Contents
+            </div>
+            {{ .TableOfContents }}
+        </div>
+        {{ end }}
+        
+        <!-- Main Content -->
+        <div class="content">
+            {{ .Content }}
+        </div>
+        
+        <!-- Post Footer -->
+        <footer class="post-footer" style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-dark);">
+            
+            <!-- Social Sharing -->
+            {{ if .Site.Params.show_sharing }}
+            <div class="sharing" style="margin-bottom: 12px;">
+                <div style="font-weight: bold; margin-bottom: 6px;">📤 Share this post:</div>
+                <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+                    <a href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" 
+                       target="_blank" class="btn" style="font-size: 10px;">Twitter</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" 
+                       target="_blank" class="btn" style="font-size: 10px;">Facebook</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" 
+                       target="_blank" class="btn" style="font-size: 10px;">LinkedIn</a>
+                    <a href="mailto:?subject={{ .Title }}&body={{ .Permalink }}" 
+                       class="btn" style="font-size: 10px;">Email</a>
+                </div>
+            </div>
+            {{ end }}
+            
+            <!-- Series Navigation -->
+            {{ with .Params.series }}
+            {{ $series := index . 0 }}
+            {{ $seriesPages := where $.Site.RegularPages ".Params.series" "intersect" . }}
+            {{ if gt (len $seriesPages) 1 }}
+            <div class="series-nav" style="background: var(--bg-secondary); border: 1px inset var(--border-dark); padding: 8px; margin: 12px 0;">
+                <div style="font-weight: bold; margin-bottom: 6px;">📚 More in "{{ $series }}" series:</div>
+                <ul style="padding-left: 1rem; margin: 0; font-size: 10px;">
+                    {{ range $seriesPages.ByDate }}
+                    <li style="margin: 2px 0;">
+                        {{ if eq .Permalink $.Permalink }}
+                        <strong>{{ .Title }}</strong> (current)
+                        {{ else }}
+                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                        {{ end }}
+                        <span style="color: var(--text-secondary);"> - {{ .Date.Format "Jan 2" }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+            {{ end }}
+            
+            <!-- Related Posts -->
+            {{ $related := .Site.RegularPages.Related . | first 3 }}
+            {{ if $related }}
+            <div class="related-posts" style="background: var(--bg-secondary); border: 1px inset var(--border-dark); padding: 8px; margin: 12px 0;">
+                <div style="font-weight: bold; margin-bottom: 6px;">🔗 Related Posts:</div>
+                <ul style="padding-left: 1rem; margin: 0; font-size: 10px;">
+                    {{ range $related }}
+                    <li style="margin: 2px 0;">
+                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                        <span style="color: var(--text-secondary);"> - {{ .Date.Format "Jan 2" }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+            
+            <!-- Edit Link -->
+            {{ if .Site.Params.edit_page }}
+            <div class="edit-link" style="font-size: 10px; margin-top: 8px;">
+                {{ with .Site.Params.repo_url }}
+                <a href="{{ . }}/edit/main/content/{{ $.File.Path }}" target="_blank">
+                    ✏️ Edit this page on GitHub
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </footer>
+    </div>
+</article>
+
+<!-- Post Navigation -->
+<nav class="post-nav" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0;">
+    {{ with .PrevInSection }}
+    <div class="window">
+        <div class="window-header">
+            <span class="window-title">← Previous Post</span>
+            <div class="window-controls">
+                <span class="window-button">_</span>
+                <span class="window-button">□</span>
+                <span class="window-button">×</span>
+            </div>
+        </div>
+        <div class="window-content">
+            <a href="{{ .Permalink }}" style="text-decoration: none; color: inherit;">
+                <div style="font-weight: bold; font-size: 10px; margin-bottom: 2px;">{{ .Title }}</div>
+                <div style="font-size: 9px; color: var(--text-secondary);">{{ .Date.Format "Jan 2, 2006" }}</div>
+            </a>
+        </div>
+    </div>
+    {{ else }}
+    <div></div>
+    {{ end }}
+    
+    {{ with .NextInSection }}
+    <div class="window">
+        <div class="window-header">
+            <span class="window-title">Next Post →</span>
+            <div class="window-controls">
+                <span class="window-button">_</span>
+                <span class="window-button">□</span>
+                <span class="window-button">×</span>
+            </div>
+        </div>
+        <div class="window-content">
+            <a href="{{ .Permalink }}" style="text-decoration: none; color: inherit;">
+                <div style="font-weight: bold; font-size: 10px; margin-bottom: 2px;">{{ .Title }}</div>
+                <div style="font-size: 9px; color: var(--text-secondary);">{{ .Date.Format "Jan 2, 2006" }}</div>
+            </a>
+        </div>
+    </div>
+    {{ end }}
+</nav>
+
+<!-- Comments -->
+{{ if .Site.Config.Services.Disqus.Shortname }}
+<div class="comments">
+    <div class="window">
+        <div class="window-header">
+            <span class="window-title">💬 Comments</span>
+            <div class="window-controls">
+                <span class="window-button">_</span>
+                <span class="window-button">□</span>
+                <span class="window-button">×</span>
+            </div>
+        </div>
+        <div class="window-content">
+            {{ template "_internal/disqus.html" . }}
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ end }}

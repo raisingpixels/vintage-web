@@ -1,0 +1,98 @@
+{{ define "main" }}
+<div class="window">
+    <div class="window-header">
+        <span class="window-title">📂 Category: {{ .Data.Term | title }}</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <div class="category-info" style="background: var(--bg-secondary); border: 1px inset var(--border-dark); padding: 8px; margin-bottom: 12px;">
+            <div style="font-weight: bold; margin-bottom: 4px;">
+                📂 Category: {{ .Data.Term | title }}
+            </div>
+            <div style="font-size: 10px;">
+                {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }} in this category
+            </div>
+            {{ with .Description }}
+            <div style="font-size: 10px; margin-top: 4px; font-style: italic;">{{ . }}</div>
+            {{ end }}
+        </div>
+        
+        <!-- Category Posts -->
+        {{ if .Pages }}
+        <ul class="post-list">
+            {{ range .Pages.ByDate.Reverse }}
+            <li class="post-list-item">
+                {{ with .Params.featured_image }}
+                <div class="post-thumbnail" style="float: left; margin-right: 8px; margin-bottom: 4px;">
+                    <img src="{{ . }}" alt="{{ $.Title }}" style="width: 60px; height: 45px; object-fit: cover; border: 1px solid var(--border-dark);">
+                </div>
+                {{ end }}
+                
+                <div class="post-list-title">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
+                
+                <div class="post-list-meta">
+                    <span class="post-meta-item">📅 {{ .Date.Format "Jan 2, 2006" }}</span>
+                    {{ with .Params.author }}
+                    <span class="post-meta-item">👤 {{ . }}</span>
+                    {{ end }}
+                    <span class="post-meta-item">📖 {{ .ReadingTime }} min read</span>
+                </div>
+                
+                {{ with .Summary }}
+                <div class="post-list-summary">{{ . | truncate 200 }}</div>
+                {{ end }}
+                
+                {{ with .Params.tags }}
+                <div class="post-tags" style="margin-top: 4px;">
+                    {{ range . }}
+                    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" 
+                       style="display: inline-block; background: var(--button-face); border: 1px outset var(--button-face); padding: 1px 3px; margin: 1px; font-size: 8px; text-decoration: none; color: var(--text-primary);">
+                       🏷️ {{ . }}
+                    </a>
+                    {{ end }}
+                </div>
+                {{ end }}
+                
+                <div style="clear: both;"></div>
+            </li>
+            {{ end }}
+        </ul>
+        {{ else }}
+        <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
+            📭 No posts found in this category.
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+<!-- Related Categories -->
+{{ if .Site.Taxonomies.categories }}
+<div class="window">
+    <div class="window-header">
+        <span class="window-title">📂 Other Categories</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <div class="tag-cloud">
+            {{ range $name, $pages := .Site.Taxonomies.categories }}
+            {{ if ne $name $.Data.Term }}
+            <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">
+                📂 {{ $name | title }} ({{ len $pages }})
+            </a>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ end }}

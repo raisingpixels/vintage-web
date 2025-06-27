@@ -1,0 +1,17 @@
+name = "Vintage Web"
+license = "MIT"
+licenselink = "https://github.com/vibecodemama/vintage-web/blob/main/LICENSE"
+description = "A nostalgic theme inspired by late 90s/early 2000s web design with modern functionality"
+homepage = "https://github.com/vibecodemama/vintage-web"
+tags = ["retro", "vintage", "90s", "responsive", "clean", "minimal", "blog", "personal"]
+features = ["responsive", "syntax-highlighting", "gallery", "media-support", "seo", "analytics"]
+min_version = "0.120.0"
+
+[author]
+  name = "vibecodemama"
+  homepage = "https://github.com/vibecodemama"
+
+[original]
+  name = "Vintage Web Theme"
+  homepage = "https://github.com/vibecodemama/vintage-web"
+  repo = "https://github.com/vibecodemama/vintage-web"

@@ -1,0 +1,72 @@
+<nav class="site-nav">
+    <ul class="nav-menu">
+        
+        <!-- Use defined main menu if it exists -->
+        {{ if .Site.Menus.main }}
+            {{ range .Site.Menus.main }}
+            <li class="nav-item">
+                <a href="{{ .URL }}" class="nav-link"{{ if .Post }} {{ .Post | safeHTMLAttr }}{{ end }}>
+                    {{ .Pre }}{{ .Name }}{{ .Post }}
+                </a>
+            </li>
+            {{ end }}
+            
+            <!-- Add categories and tags to main menu -->
+            <li class="nav-item">
+                <a href="{{ "/categories/" | relLangURL }}" class="nav-link">📂 Categories</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ "/tags/" | relLangURL }}" class="nav-link">🏷️ Tags</a>
+            </li>
+            
+        {{ else }}
+            <!-- Auto-generated menu items if no menu is defined -->
+            <li class="nav-item">
+                <a href="{{ "/" | relLangURL }}" class="nav-link">🏠 Home</a>
+            </li>
+            
+            {{ $posts := where .Site.RegularPages "Type" "posts" }}
+            {{ if $posts }}
+            <li class="nav-item">
+                <a href="{{ "/posts/" | relLangURL }}" class="nav-link">📝 Posts</a>
+            </li>
+            {{ end }}
+            
+            {{ $about := .Site.GetPage "/about" }}
+            {{ if $about }}
+            <li class="nav-item">
+                <a href="{{ $about.Permalink }}" class="nav-link">👤 About</a>
+            </li>
+            {{ end }}
+            
+            {{ $contact := .Site.GetPage "/contact" }}
+            {{ if $contact }}
+            <li class="nav-item">
+                <a href="{{ $contact.Permalink }}" class="nav-link">📧 Contact</a>
+            </li>
+            {{ end }}
+            
+            <li class="nav-item">
+                <a href="{{ "/categories/" | relLangURL }}" class="nav-link">📂 Categories</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="{{ "/tags/" | relLangURL }}" class="nav-link">🏷️ Tags</a>
+            </li>
+        {{ end }}
+        
+        <!-- RSS Feed -->
+        {{ with .Site.LanguageCode }}
+        <li class="nav-item">
+            <a href="{{ "/index.xml" | relLangURL }}" class="nav-link">📡 RSS</a>
+        </li>
+        {{ end }}
+        
+        <!-- Search if enabled -->
+        {{ if .Site.Params.search_enabled }}
+        <li class="nav-item">
+            <a href="{{ "/search/" | relLangURL }}" class="nav-link">🔍 Search</a>
+        </li>
+        {{ end }}
+    </ul>
+</nav>

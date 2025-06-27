@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Beginner on Retro Web Central - Y2K Compliant Since 1999</title>
+    <link>http://localhost:38497/tags/beginner/</link>
+    <description>Recent content in Beginner on Retro Web Central - Y2K Compliant Since 1999</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Nov 1999 14:30:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:38497/tags/beginner/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTML Basics for the New Millennium!</title>
+      <link>http://localhost:38497/posts/html-basics-1999/</link>
+      <pubDate>Mon, 15 Nov 1999 14:30:00 +0000</pubDate>
+      <guid>http://localhost:38497/posts/html-basics-1999/</guid>
+      <description>&lt;h1 id=&#34;html-basics-for-the-new-millennium-&#34;&gt;HTML Basics for the New Millennium! 🌐&lt;/h1&gt;&#xA;&lt;p&gt;Welcome to the most comprehensive HTML tutorial on the World Wide Web! By the end of this guide, you&amp;rsquo;ll be creating websites that would make even the pros at Netscape jealous!&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-html-&#34;&gt;What is HTML? 🤔&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt; stands for &lt;strong&gt;HyperText Markup Language&lt;/strong&gt; - it&amp;rsquo;s the backbone of every website on the Internet! Think of it as the skeleton that holds your web page together.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

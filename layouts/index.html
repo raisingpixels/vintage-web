@@ -1,0 +1,194 @@
+{{ define "main" }}
+<div class="window">
+    <div class="window-header">
+        <span class="window-title">Welcome to {{ .Site.Title }}</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        {{ with .Content }}
+        <div class="content">
+            {{ . }}
+        </div>
+        {{ end }}
+        
+        {{ if .Site.Params.show_welcome_message }}
+        <div class="marquee">
+            <div class="marquee-text">
+                {{ .Site.Params.welcome_message | default "Welcome to our vintage web experience! Browse through our content with that classic 90s feel." }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+<!-- Featured Posts -->
+{{ $posts := where .Site.RegularPages "Type" "posts" }}
+{{ if $posts }}
+<div class="window">
+    <div class="window-header">
+        <span class="window-title">Recent Posts</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <ul class="post-list">
+            {{ range first 5 $posts }}
+            <li class="post-list-item">
+                <div class="post-list-title">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </div>
+                <div class="post-list-meta">
+                    <span class="post-meta-item">{{ .Date.Format "Jan 2, 2006" }}</span>
+                    {{ with .Params.categories }}
+                    <span class="post-meta-item">
+                        {{ range . }}
+                        <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                        {{ end }}
+                    </span>
+                    {{ end }}
+                </div>
+                {{ with .Summary }}
+                <div class="post-list-summary">{{ . | truncate 150 }}</div>
+                {{ end }}
+            </li>
+            {{ end }}
+        </ul>
+        
+        {{ if gt (len $posts) 5 }}
+        <div style="text-align: center; margin-top: 12px;">
+            <a href="{{ "/posts/" | relLangURL }}" class="btn">View All Posts</a>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+
+<!-- Featured Content Sections -->
+{{ if .Site.Params.show_featured_sections }}
+<div class="window">
+    <div class="window-header">
+        <span class="window-title">Featured Content</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+            <!-- Typography Showcase -->
+            {{ $typography := .Site.GetPage "/posts/typography-showcase" }}
+            {{ if $typography }}
+            <div style="background: var(--bg-secondary); border: 1px outset var(--border-dark); padding: 8px; text-align: center;">
+                <div style="font-weight: bold; margin-bottom: 4px;">Typography</div>
+                <div style="font-size: 10px; margin-bottom: 6px;">See all typography features</div>
+                <a href="{{ $typography.Permalink }}" class="btn">View Demo</a>
+            </div>
+            {{ end }}
+            
+            <!-- Media Content -->
+            {{ $media := .Site.GetPage "/posts/media-content" }}
+            {{ if $media }}
+            <div style="background: var(--bg-secondary); border: 1px outset var(--border-dark); padding: 8px; text-align: center;">
+                <div style="font-weight: bold; margin-bottom: 4px;">Media</div>
+                <div style="font-size: 10px; margin-bottom: 6px;">Images, videos, and more</div>
+                <a href="{{ $media.Permalink }}" class="btn">View Demo</a>
+            </div>
+            {{ end }}
+            
+            <!-- Code Examples -->
+            {{ $code := .Site.GetPage "/posts/code-examples" }}
+            {{ if $code }}
+            <div style="background: var(--bg-secondary); border: 1px outset var(--border-dark); padding: 8px; text-align: center;">
+                <div style="font-weight: bold; margin-bottom: 4px;">Code</div>
+                <div style="font-size: 10px; margin-bottom: 6px;">Syntax highlighting demos</div>
+                <a href="{{ $code.Permalink }}" class="btn">View Demo</a>
+            </div>
+            {{ end }}
+            
+            <!-- Tables and Lists -->
+            {{ $tables := .Site.GetPage "/posts/tables-and-lists" }}
+            {{ if $tables }}
+            <div style="background: var(--bg-secondary); border: 1px outset var(--border-dark); padding: 8px; text-align: center;">
+                <div style="font-weight: bold; margin-bottom: 4px;">Tables</div>
+                <div style="font-size: 10px; margin-bottom: 6px;">Data presentation styles</div>
+                <a href="{{ $tables.Permalink }}" class="btn">View Demo</a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
+
+<!-- Statistics -->
+{{ if .Site.Params.show_stats }}
+<div class="window">
+    <div class="window-header">
+        <span class="window-title">Site Statistics</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; text-align: center;">
+            <div class="status-item">
+                <div style="font-weight: bold;">{{ len .Site.RegularPages }}</div>
+                <div style="font-size: 9px;">Total Pages</div>
+            </div>
+            <div class="status-item">
+                <div style="font-weight: bold;">{{ len (where .Site.RegularPages "Type" "posts") }}</div>
+                <div style="font-size: 9px;">Blog Posts</div>
+            </div>
+            <div class="status-item">
+                <div style="font-weight: bold;">{{ len .Site.Taxonomies.categories }}</div>
+                <div style="font-size: 9px;">Categories</div>
+            </div>
+            <div class="status-item">
+                <div style="font-weight: bold;">{{ len .Site.Taxonomies.tags }}</div>
+                <div style="font-size: 9px;">Tags</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+<!-- Nostalgic Elements -->
+{{ if .Site.Params.show_retro_elements }}
+<div class="window">
+    <div class="window-header">
+        <span class="window-title">✨ Retro Web Experience ✨</span>
+        <div class="window-controls">
+            <span class="window-button">_</span>
+            <span class="window-button">□</span>
+            <span class="window-button">×</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <div style="text-align: center; padding: 8px;">
+            <div style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+                <span class="blink">🌟</span> 
+                You are visitor number: 
+                <span style="background: #000; color: #00ff00; padding: 2px 4px; font-family: 'Courier New', monospace;">{{ now.Unix | string }}</span>
+                <span class="blink">🌟</span>
+            </div>
+            <div style="font-size: 10px; margin-bottom: 8px;">
+                Best viewed in {{ if eq (now.Weekday) 0 }}Netscape Navigator{{ else if eq (now.Weekday) 1 }}Internet Explorer{{ else if eq (now.Weekday) 2 }}Mozilla Firefox{{ else if eq (now.Weekday) 3 }}Opera{{ else if eq (now.Weekday) 4 }}Safari{{ else if eq (now.Weekday) 5 }}Chrome{{ else }}Any Browser{{ end }} 
+                at 1024x768 resolution
+            </div>
+            <div style="font-size: 9px; color: var(--text-secondary);">
+                Last updated: {{ .Site.Lastmod.Format "Monday, January 2, 2006 at 3:04 PM" }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ end }}

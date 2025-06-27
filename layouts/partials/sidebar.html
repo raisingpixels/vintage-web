@@ -1,0 +1,152 @@
+<!-- Recent Posts -->
+{{ $recentPosts := where .Site.RegularPages "Type" "posts" | first 5 }}
+{{ if $recentPosts }}
+<div class="sidebar-section">
+    <div class="sidebar-title">📝 Recent Posts</div>
+    <ul>
+        {{ range $recentPosts }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <div style="font-size: 9px; color: var(--text-secondary);">{{ .Date.Format "Jan 2" }}</div>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+<!-- Categories -->
+{{ with .Site.Taxonomies.categories }}
+<div class="sidebar-section">
+    <div class="sidebar-title">📂 Categories</div>
+    <ul>
+        {{ range $name, $pages := . }}
+        <li>
+            <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">
+                {{ $name | title }} ({{ len $pages }})
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+<!-- Popular Tags -->
+{{ with .Site.Taxonomies.tags }}
+<div class="sidebar-section">
+    <div class="sidebar-title">🏷️ Popular Tags</div>
+    <div class="tag-cloud">
+        {{ range first 15 (.ByCount) }}
+        <a href="{{ "/tags/" | relLangURL }}{{ .Name | urlize }}">
+            {{ .Name }} ({{ .Count }})
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+
+<!-- Archives -->
+{{ if .Site.RegularPages }}
+<div class="sidebar-section">
+    <div class="sidebar-title">📅 Archives</div>
+    <ul>
+        {{ range .Site.RegularPages.GroupByDate "2006-01" }}
+        <li>
+            <a href="{{ "/posts/" | relLangURL }}{{ .Key }}/">
+                {{ .Key }} ({{ len .Pages }})
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+<!-- Series -->
+{{ with .Site.Taxonomies.series }}
+<div class="sidebar-section">
+    <div class="sidebar-title">📚 Series</div>
+    <ul>
+        {{ range $name, $pages := . }}
+        <li>
+            <a href="{{ "/series/" | relLangURL }}{{ $name | urlize }}">
+                {{ $name | title }} ({{ len $pages }})
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+<!-- Social Links -->
+{{ if .Site.Params.social }}
+<div class="sidebar-section">
+    <div class="sidebar-title">🌐 Connect</div>
+    <ul>
+        {{ with .Site.Params.social.twitter }}
+        <li><a href="https://twitter.com/{{ . }}" target="_blank">🐦 Twitter</a></li>
+        {{ end }}
+        {{ with .Site.Params.social.github }}
+        <li><a href="https://github.com/{{ . }}" target="_blank">🐱 GitHub</a></li>
+        {{ end }}
+        {{ with .Site.Params.social.linkedin }}
+        <li><a href="https://linkedin.com/in/{{ . }}" target="_blank">💼 LinkedIn</a></li>
+        {{ end }}
+        {{ with .Site.Params.social.email }}
+        <li><a href="mailto:{{ . }}">📧 Email</a></li>
+        {{ end }}
+        {{ with .Site.Params.social.mastodon }}
+        <li><a href="{{ . }}" target="_blank" rel="me">🐘 Mastodon</a></li>
+        {{ end }}
+        {{ with .Site.Params.social.youtube }}
+        <li><a href="https://youtube.com/{{ . }}" target="_blank">📺 YouTube</a></li>
+        {{ end }}
+        {{ with .Site.Params.social.instagram }}
+        <li><a href="https://instagram.com/{{ . }}" target="_blank">📷 Instagram</a></li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+
+<!-- Custom Widget -->
+{{ with .Site.Params.sidebar_content }}
+<div class="sidebar-section">
+    <div class="sidebar-title">ℹ️ Info</div>
+    <div style="font-size: 10px; line-height: 1.3;">
+        {{ . | markdownify }}
+    </div>
+</div>
+{{ end }}
+
+<!-- Site Stats -->
+{{ if .Site.Params.show_sidebar_stats }}
+<div class="sidebar-section">
+    <div class="sidebar-title">📊 Site Stats</div>
+    <div style="font-size: 10px;">
+        <div>Total Posts: {{ len (where .Site.RegularPages "Type" "posts") }}</div>
+        <div>Total Pages: {{ len .Site.RegularPages }}</div>
+        <div>Categories: {{ len .Site.Taxonomies.categories }}</div>
+        <div>Tags: {{ len .Site.Taxonomies.tags }}</div>
+        <div>Last Updated: {{ .Site.Lastmod.Format "Jan 2, 2006" }}</div>
+    </div>
+</div>
+{{ end }}
+
+<!-- Retro Elements -->
+{{ if .Site.Params.show_retro_sidebar }}
+<div class="sidebar-section">
+    <div class="sidebar-title">✨ Retro Corner</div>
+    <div style="text-align: center; font-size: 9px;">
+        <div style="background: #000; color: #00ff00; padding: 2px; font-family: 'Courier New', monospace; margin: 4px 0;">
+            > SYSTEM ONLINE
+        </div>
+        <div class="blink" style="color: var(--text-link);">
+            🌟 NEW! 🌟
+        </div>
+        <div style="margin: 4px 0;">
+            Best viewed in 1024x768
+        </div>
+        <div>
+            Powered by Hugo {{ hugo.Version }}
+        </div>
+    </div>
+</div>
+{{ end }}

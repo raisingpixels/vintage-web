@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    
+    <!-- Meta tags -->
+    {{ with .Description }}
+    <meta name="description" content="{{ . }}">
+    {{ else }}
+    <meta name="description" content="{{ .Site.Params.description | default .Site.Title }}">
+    {{ end }}
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
+    <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    {{ with .Params.featured_image }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    {{ end }}
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}">
+    <meta name="twitter:description" content="{{ .Description | default .Site.Params.description }}">
+    {{ with .Params.featured_image }}
+    <meta name="twitter:image" content="{{ . | absURL }}">
+    {{ end }}
+    
+    <!-- RSS -->
+    {{ range .AlternativeOutputFormats -}}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}" title="{{ $.Site.Title }}">
+    {{ end -}}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+    
+    <!-- Styles -->
+    {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $css.Permalink }}">
+    
+    <!-- Custom CSS -->
+    {{ with .Site.Params.custom_css }}
+    <style>{{ . | safeCSS }}</style>
+    {{ end }}
+    
+    {{ block "head" . }}{{ end }}
+</head>
+<body>
+    <!-- Browser Chrome Effect -->
+    {{ if .Site.Params.show_browser_chrome }}
+    <div class="browser-chrome">
+        <div class="toolbar">
+            <span class="toolbar-button">Back</span>
+            <span class="toolbar-button">Forward</span>
+            <span class="toolbar-button">Refresh</span>
+            <span class="toolbar-button">Home</span>
+        </div>
+        <div class="address-bar">
+            {{ if .IsHome }}
+            {{ .Site.BaseURL }}
+            {{ else }}
+            {{ .Permalink }}
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+    
+    <div class="container">
+        <!-- Navigation -->
+        {{ partial "navigation.html" . }}
+        
+        <!-- Site Header -->
+        <header class="site-header">
+            <div class="window">
+                <div class="window-header">
+                    <span class="window-title">{{ .Site.Title }}</span>
+                    <div class="window-controls">
+                        <span class="window-button">_</span>
+                        <span class="window-button">□</span>
+                        <span class="window-button">×</span>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <a href="{{ .Site.BaseURL }}" class="site-title">{{ .Site.Title }}</a>
+                    {{ with .Site.Params.tagline }}
+                    <div class="site-tagline">{{ . }}</div>
+                    {{ end }}
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            {{ block "main" . }}{{ end }}
+        </main>
+        
+        <!-- Sidebar -->
+        {{ if .Site.Params.show_sidebar }}
+        <aside class="sidebar">
+            {{ partial "sidebar.html" . }}
+        </aside>
+        {{ end }}
+        
+        <!-- Footer -->
+        {{ partial "footer.html" . }}
+    </div>
+    
+    <!-- Status Bar -->
+    {{ if .Site.Params.show_status_bar }}
+    <div class="status-bar">
+        <div class="status-left">
+            <span class="status-item">{{ now.Format "Mon 02 Jan 2006" }}</span>
+            <span class="status-item">{{ now.Format "15:04" }}</span>
+        </div>
+        <div class="status-right">
+            <span class="status-item">{{ .Site.Title }}</span>
+            {{ if .IsPage }}
+            <span class="status-item">{{ .WordCount }} words</span>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+    
+    <!-- JavaScript -->
+    {{ $js := resources.Get "js/main.js" }}
+    {{ if $js }}
+    {{ $js := $js | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $js.Permalink }}"></script>
+    {{ end }}
+    
+    <!-- Custom JavaScript -->
+    {{ with .Site.Params.custom_js }}
+    <script>{{ . | safeJS }}</script>
+    {{ end }}
+    
+    <!-- Analytics -->
+    {{ template "_internal/google_analytics.html" . }}
+    
+    {{ block "scripts" . }}{{ end }}
+</body>
+</html>
