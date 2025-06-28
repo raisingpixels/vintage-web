@@ -2,7 +2,7 @@
 
 A nostalgic Hugo theme inspired by late 90s/early 2000s web design with modern functionality. Experience the charm of classic operating system interfaces with contemporary web standards.
 
-![Theme Preview](https://github.com/vibecodemama/vintage-web/blob/master/images/screenshot.jpeg?raw=true)
+![Theme Preview](https://github.com/vibecodemama/vintage-web/blob/master/images/screenshot.png?raw=true)
 
 ## Features
 
@@ -102,29 +102,29 @@ theme = "vintage-web"
   # Site Description
   description = "A nostalgic journey through the early web"
   author = "Your Name"
-  
+
   # Retro Features
   show_browser_chrome = true
   show_status_bar = true
   show_sidebar = true
   show_welcome_message = true
   welcome_message = "Welcome to our vintage web experience!"
-  
+
   # Content Display
   show_featured_sections = true
   show_stats = true
   show_retro_elements = true
   show_sharing = true
-  
+
   # Footer Options
   show_retro_footer = true
   show_build_info = false
-  
+
   # Sidebar Options
   show_sidebar_stats = true
   show_retro_sidebar = true
   sidebar_content = "Welcome to our retro corner of the internet!"
-  
+
   # Social Links
   [params.social]
     twitter = "username"
@@ -134,10 +134,10 @@ theme = "vintage-web"
     mastodon = "https://mastodon.social/@username"
     youtube = "channelname"
     instagram = "username"
-  
+
   # SEO and Analytics
   google_analytics = "G-XXXXXXXXXX"
-  
+
   # Repository (for edit links)
   repo_url = "https://github.com/username/repo"
   edit_page = true

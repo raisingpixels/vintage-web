@@ -42,6 +42,7 @@ build/
 .cache/
 .tmp/
 .temp/
+*/public
 
 # Hugo theme development
 themes/*/exampleSite/public/
