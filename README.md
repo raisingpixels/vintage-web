@@ -2,7 +2,7 @@
 
 A nostalgic Hugo theme inspired by late 90s/early 2000s web design with modern functionality. Experience the charm of classic operating system interfaces with contemporary web standards.
 
-![Theme Preview](https://github.com/vibecodemama/vintage-web/blob/master/images/screenshot.png?raw=true)
+![Theme Preview](https://github.com/raisingpixels/vintage-web/blob/master/images/screenshot.png?raw=true)
 
 ## Features
 
@@ -41,13 +41,13 @@ A nostalgic Hugo theme inspired by late 90s/early 2000s web design with modern f
 ### Option 1: Git Submodule (Recommended)
 
 ```bash
-git submodule add https://github.com/vibecodemama/vintage-web.git themes/vintage-web
+git submodule add https://github.com/raisingpixels/vintage-web.git themes/vintage-web
 ```
 
 ### Option 2: Git Clone
 
 ```bash
-git clone https://github.com/vibecodemama/vintage-web.git themes/vintage-web
+git clone https://github.com/raisingpixels/vintage-web.git themes/vintage-web
 ```
 
 ### Option 3: Download
@@ -336,12 +336,11 @@ This theme is released under the MIT License. See [LICENSE](LICENSE) for details
 
 ## Support
 
-- 📖 [Documentation](https://github.com/vibecodemama/vintage-web/wiki)
-- 🐛 [Issues](https://github.com/vibecodemama/vintage-web/issues)
-- 💬 [Discussions](https://github.com/vibecodemama/vintage-web/discussions)
+- 📖 [Documentation](https://github.com/raisingpixels/vintage-web/blob/master/README.md)
+- 🐛 [Issues](https://github.com/raisingpixels/vintage-web/issues)
 
 ---
 
-Made with 💾 by [vibecodemama](https://github.com/vibecodemama)
+Made with 💾 by [raisingpixels](https://github.com/raisingpixels)
 
 *Remember: This site is Y2K compliant and best viewed in 1024x768! 🖥️*

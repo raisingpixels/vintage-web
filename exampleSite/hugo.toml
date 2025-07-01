@@ -74,10 +74,10 @@ ignoreLogs = ['warning-goldmark-raw-html']
   
   # Social Links
   [params.social]
-    twitter = "vibecodemama"
-    github = "vibecodemama"
+    twitter = "raisingpixels"
+    github = "raisingpixels"
     email = "webmaster@example.com"
   
   # Repository (for edit links)
-  repo_url = "https://github.com/vibecodemama/vintage-web"
+  repo_url = "https://github.com/raisingpixels/vintage-web"
   edit_page = true
