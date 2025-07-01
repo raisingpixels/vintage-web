@@ -49,35 +49,35 @@ ignoreLogs = ['warning-goldmark-raw-html']
   # Site Description
   description = "Your ultimate destination for nostalgic web experiences and retro tech wisdom"
   author = "WebMaster3000"
-  
+
   # Retro Features
   show_browser_chrome = true
   show_status_bar = true
   show_sidebar = true
   show_welcome_message = true
   welcome_message = "Welcome to the World Wide Web! You are visitor #999,999!"
-  
+
   # Content Display
   show_featured_sections = true
   show_stats = true
   show_retro_elements = true
   show_sharing = true
-  
+
   # Footer Options
   show_retro_footer = true
   show_build_info = false
-  
+
   # Sidebar Options
   show_sidebar_stats = true
   show_retro_sidebar = true
   sidebar_content = "This site is best viewed in Netscape Navigator 4.0 at 1024x768 resolution!"
-  
+
   # Social Links
   [params.social]
     twitter = "raisingpixels"
     github = "raisingpixels"
     email = "webmaster@example.com"
-  
+
   # Repository (for edit links)
   repo_url = "https://github.com/raisingpixels/vintage-web"
   edit_page = true

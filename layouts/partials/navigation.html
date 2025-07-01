@@ -12,12 +12,19 @@
             {{ end }}
 
             <!-- Add categories and tags to main menu -->
+            {{ $categories := .Site.GetPage "/categories" }}
+            {{ if $categories }}
             <li class="nav-item">
-                <a href="{{ "/categories/" | absLangURL }}" class="nav-link">📂 Categories</a>
+                <a href="{{ $categories.Permalink | absLangURL }}" class="nav-link">📂 Categories</a>
             </li>
+            {{ end }}
+
+            {{ $tags := .Site.GetPage "/tags" }}
+            {{ if $tags }}
             <li class="nav-item">
-                <a href="{{ "/tags/" | absLangURL }}" class="nav-link">🏷️ Tags</a>
+                <a href="{{ $tags.Permalink | absLangURL }}" class="nav-link">🏷️ Tags</a>
             </li>
+            {{ end }}
 
         {{ else }}
             <!-- Auto-generated menu items if no menu is defined -->
@@ -25,10 +32,10 @@
                 <a href="{{ "/" | absLangURL }}" class="nav-link">🏠 Home</a>
             </li>
 
-            {{ $posts := where .Site.RegularPages "Type" "posts" }}
+            {{ $posts := .Site.GetPage "/posts" }}
             {{ if $posts }}
             <li class="nav-item">
-                <a href="{{ "/posts/" | absLangURL }}" class="nav-link">📝 Posts</a>
+                <a href="{{ $posts.Permalink | absLangURL }}" class="nav-link">📝 Posts</a>
             </li>
             {{ end }}
 
@@ -46,26 +53,25 @@
             </li>
             {{ end }}
 
+            {{ $categories := .Site.GetPage "/categories" }}
+            {{ if $categories }}
             <li class="nav-item">
-                <a href="{{ "/categories/" | absLangURL }}" class="nav-link">📂 Categories</a>
+                <a href="{{ $categories.Permalink | absLangURL }}" class="nav-link">📂 Categories</a>
             </li>
+            {{ end }}
 
+            {{ $tags := .Site.GetPage "/tags" }}
+            {{ if $tags }}
             <li class="nav-item">
-                <a href="{{ "/tags/" | absLangURL }}" class="nav-link">🏷️ Tags</a>
+                <a href="{{ $tags.Permalink | absLangURL }}" class="nav-link">🏷️ Tags</a>
             </li>
+            {{ end }}
         {{ end }}
 
         <!-- RSS Feed -->
         {{ with .Site.LanguageCode }}
         <li class="nav-item">
-            <a href="{{ "/index.xml" | absLangURL }}" class="nav-link">📡 RSS</a>
-        </li>
-        {{ end }}
-
-        <!-- Search if enabled -->
-        {{ if .Site.Params.search_enabled }}
-        <li class="nav-item">
-            <a href="{{ "/search/" | absLangURL }}" class="nav-link">🔍 Search</a>
+            <a href="{{ ($.Site.Home.OutputFormats.Get "RSS").RelPermalink | absURL }}" class="nav-link">📡 RSS</a>
         </li>
         {{ end }}
     </ul>
