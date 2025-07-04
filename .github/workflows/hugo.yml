@@ -48,6 +48,14 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - name: Ensure theme symlink for exampleSite
+        run: |
+          THEME_ROOT="$GITHUB_WORKSPACE"
+          EXAMPLE_SITE="$GITHUB_WORKSPACE/exampleSite"
+          mkdir -p "$EXAMPLE_SITE/themes"
+          ln -sf "$THEME_ROOT" "$EXAMPLE_SITE/themes/vintage-web-hugo-theme"
+      - name: List exampleSite/themes contents for debug
+        run: ls -l exampleSite/themes
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
