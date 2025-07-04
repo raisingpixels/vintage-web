@@ -1,9 +1,9 @@
 name = "Vintage Web"
 license = "MIT"
-licenselink = "https://github.com/raisingpixels/vintage-web/blob/main/LICENSE"
+licenselink = "https://github.com/raisingpixels/vintage-web-hugo-theme/blob/main/LICENSE"
 description = "A nostalgic theme inspired by late 90s/early 2000s web design with modern functionality."
-homepage = "https://github.com/raisingpixels/vintage-web"
-demosite = "https://raisingpixels.dev/vintage-web/"
+homepage = "https://github.com/raisingpixels/vintage-web-hugo-theme"
+demosite = "https://raisingpixels.dev/vintage-web-hugo-theme/"
 tags = ["retro", "vintage", "90s", "responsive", "clean", "minimal", "blog", "personal"]
 features = ["responsive", "syntax-highlighting", "gallery", "media-support", "seo", "analytics"]
 min_version = "0.120.0"

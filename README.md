@@ -2,7 +2,7 @@
 
 A nostalgic Hugo theme inspired by late 90s/early 2000s web design with modern functionality. Experience the charm of classic operating system interfaces with contemporary web standards.
 
-![Theme Preview](https://github.com/raisingpixels/vintage-web/blob/master/images/screenshot.png?raw=true)
+![Theme Preview](https://github.com/raisingpixels/vintage-web-hugo-theme/blob/master/images/screenshot.png?raw=true)
 
 ## Features
 
@@ -29,7 +29,7 @@ A nostalgic Hugo theme inspired by late 90s/early 2000s web design with modern f
 - Multiple post list views (list, grid, archive)
 
 🎨 **Content Support**
-- Complete Markdown support
+- Complete Markdown support (thoroughly tested with the [Hugo Theme Development Template](https://github.com/raisingpixels/hugo-theme-dev-template))
 - Syntax highlighting for code
 - Image galleries and media embedding
 - Table of contents generation
@@ -41,25 +41,25 @@ A nostalgic Hugo theme inspired by late 90s/early 2000s web design with modern f
 ### Option 1: Git Submodule (Recommended)
 
 ```bash
-git submodule add https://github.com/raisingpixels/vintage-web.git themes/vintage-web
+git submodule add https://github.com/raisingpixels/vintage-web-hugo-theme.git themes/vintage-web-hugo-theme
 ```
 
 ### Option 2: Git Clone
 
 ```bash
-git clone https://github.com/raisingpixels/vintage-web.git themes/vintage-web
+git clone https://github.com/raisingpixels/vintage-web-hugo-theme.git themes/vintage-web-hugo-theme
 ```
 
 ### Option 3: Download
 
-Download the latest release and extract to your `themes/vintage-web` directory.
+Download the latest release and extract to your `themes/vintage-web-hugo-theme` directory.
 
 ## Configuration
 
 Add the theme to your `hugo.toml`:
 
 ```toml
-theme = "vintage-web"
+theme = "vintage-web-hugo-theme"
 ```
 
 ### Basic Configuration
@@ -68,7 +68,7 @@ theme = "vintage-web"
 baseURL = "https://yoursite.com"
 languageCode = "en-us"
 title = "Your Vintage Website"
-theme = "vintage-web"
+theme = "vintage-web-hugo-theme"
 
 # Pagination
 [pagination]
@@ -283,13 +283,13 @@ The exampleSite will be available at `http://localhost:1313` and includes:
 ### Local Development
 
 ```bash
-hugo server --theme=vintage-web --buildDrafts
+hugo server --theme=vintage-web-hugo-theme --buildDrafts
 ```
 
 ### Building for Production
 
 ```bash
-hugo --theme=vintage-web --minify
+hugo --theme=vintage-web-hugo-theme --minify
 ```
 
 ## Browser Support
@@ -336,8 +336,8 @@ This theme is released under the MIT License. See [LICENSE](LICENSE) for details
 
 ## Support
 
-- 📖 [Documentation](https://github.com/raisingpixels/vintage-web/blob/master/README.md)
-- 🐛 [Issues](https://github.com/raisingpixels/vintage-web/issues)
+- 📖 [Documentation](https://github.com/raisingpixels/vintage-web-hugo-theme/blob/master/README.md)
+- 🐛 [Issues](https://github.com/raisingpixels/vintage-web-hugo-theme/issues)
 
 ---
 

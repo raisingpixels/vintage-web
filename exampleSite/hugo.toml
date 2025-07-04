@@ -1,7 +1,7 @@
 baseURL = "https://example.com"
 languageCode = "en-us"
 title = "Retro Web Central - Y2K Compliant Since 1999"
-theme = "vintage-web"
+theme = "vintage-web-hugo-theme"
 
 # Pagination
 [pagination]
@@ -79,5 +79,5 @@ ignoreLogs = ['warning-goldmark-raw-html']
     email = "webmaster@example.com"
 
   # Repository (for edit links)
-  repo_url = "https://github.com/raisingpixels/vintage-web"
+  repo_url = "https://github.com/raisingpixels/vintage-web-hugo-theme"
   edit_page = true
